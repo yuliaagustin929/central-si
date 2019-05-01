@@ -13,5 +13,39 @@ class nilaiTAController extends Controller
         $nilaiTAs = nilaiTA::paginate(25);
         return view('backend.nilaiTA.index', compact('nilaiTAs'));
     }
+    public function update(Request $request, nilaiTA $nilaiTA)
+    {
+        $this->validate($request, $this->validation_rules);
 
+        $dosen->update($request->only(
+            'sidang_at',
+            'sidang_time',
+            'status',
+            'nilai_angka',
+            'nilai_huruf',
+            'nilai_toefl',
+            'nilai_akhir_ta'));
+
+        $dosen->user->update([
+            'password' => bcrypt('secret'),
+            'email' => request('email'),
+            'status' => 1,
+        ]);
+
+        session()->flash('flash_success', 'Berhasil mengupdate data nilaiTA '.$nilaiTA->nama);
+        return redirect()->route('admin.nilaiTA.show', [$nilaiTA->id]);
+    }
+    public function create()
+    {
+        return view('backend.nilaiTA.create');
+    }
+    public function show(nilaiTA $nilaiTA)
+    {
+        return view('backend.nilaiTA.show', compact('nilaiTA'));
+    }
+
+    public function edit(nilaiTA $nilaiTA)
+    {
+        return view('backend.nilaiTA.edit', compact('nilaiTA'));
+    }
 }
