@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\RefSkemaPenelitian;
 use App\RefSumberDana;
-use App\Dosen;
 use App\Penelitian;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
 class PenelitianController extends Controller
@@ -37,38 +35,40 @@ class PenelitianController extends Controller
             'file_kontrak' => 'file|mimes:pdf',
             'file_laporan' => 'file|mimes:pdf'
         ]);
-
-        $penelitian = new Penelitian();
-        $penelitian->judul = $request->input('judul');
-        $penelitian->tahun = $request->input('tahun');
-        $penelitian->lama_tahun = $request->input('lama_tahun');
-        $penelitian->total_dana = $request->input('total_dana');
-        $penelitian->skema_penelitian_id = $request->input('skema_penelitian_id');
-        $penelitian->sumber_dana_id = $request->input('sumber_dana_id');
         //Simpan file upload
-        if($request->file('file_kontrak')->isValid())
+        $file_kontrak = null;
+        if($request->hasFile('file_kontrak') && $request->file('file_kontrak')->isValid())
         {
             $filename = uniqid('kontrak-');
             $fileext = $request->file('file_kontrak')->extension();
             $filenameext = $filename.'.'.$fileext;
 
-            $filepath = $request->file_kontrak->storeAs('public/penelitian_kontrak', $filenameext);
-            $penelitian->file_kontrak = $filepath;
+            $file_kontrak = $request->file_kontrak->storeAs('public/penelitian_kontrak', $filenameext);
         }
 
-        if($request->file('file_laporan')->isValid())
+        $file_laporan = null;
+        if($request->hasFile('file_laporan') && $request->file('file_laporan')->isValid())
         {
             $filename = uniqid('laporan-');
             $fileext = $request->file('file_laporan')->extension();
             $filenameext = $filename.'.'.$fileext;
 
-            $filepath = $request->file_laporan->storeAs('public/penelitian_laporan', $filenameext);
-            $penelitian->file_laporan = $filepath;
+            $file_laporan = $request->file_laporan->storeAs('public/penelitian_laporan', $filenameext);
         }
+        $penelitian = Penelitian::create([
+            'judul' => $request->input('judul'),
+            'tahun' => $request->input('tahun'),
+            'lama_tahun' => $request->input('lama_tahun'),
+            'total_dana' => $request->input('total_dana'),
+            'sumber_dana_id' => $request->input('sumber_dana_id'),
+            'skema_penelitian_id' => $request->input('skema_penelitian_id'),
+            'file_kontrak' => $file_kontrak,
+            'file_laporan' => $file_laporan
+        ]);
         if($penelitian->save()) {
             session()->flash('flash_success', 'Berhasil menambahkan data penelitian baru');
             //Redirect ke halaman detail
-            return redirect()->route('admin.penelitian.show', [$penelitian->id]);
+            return redirect()->route('admin.penelitian-user.create', [$penelitian->id]);
         }
         return redirect()->back()->withErrors();
     }

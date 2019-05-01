@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="judul">Judul</label>
-    {{ Form::textarea('judul', null, ['class' => 'form-control', 'id' => 'judul', 'placeholder' => 'Judul Penelitian']) }}
+    {{ Form::textarea('judul', null, ['class' => 'form-control', 'id' => 'judul', 'placeholder' => 'Judul Penelitian', 'rows' => 3]) }}
 </div>
 
 <div class="form-group">
