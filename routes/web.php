@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group( function(){
     Route::get('/admin/penelitian/{mahasiswa}', 'PenelitianController@show')->name('admin.penelitian.show'); //routing tampilkan detail mahasiswa
     Route::get('/admin/penelitian/{mahasiswa}/edit', 'PenelitianController@edit')->name('admin.penelitian.edit');  //routing tampilkan form edit mahasiswa
 
+
     Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
     Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');
 
