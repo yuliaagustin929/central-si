@@ -10,4 +10,8 @@ class Penelitian extends Model
     protected $guarded = [];
 
     // Tambahkan Kode yang diperlukan dibawah ini
+    public function anggotas()
+    {
+        return $this->hasMany(PenelitianUser::class);
+    }
 }
