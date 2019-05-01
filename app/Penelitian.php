@@ -14,4 +14,14 @@ class Penelitian extends Model
     {
         return $this->hasMany(PenelitianUser::class);
     }
+
+    public function sumber_dana()
+    {
+        return $this->belongsTo(RefSumberDana::class, 'sumber_dana_id');
+    }
+
+    public function skema_penelitian()
+    {
+        return $this->belongsTo(RefSkemaPenelitian::class, 'skema_penelitian_id');
+    }
 }

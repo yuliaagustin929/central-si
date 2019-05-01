@@ -3,14 +3,14 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-        'Mahasiswa' => route('admin.dosen.index'),
+        'Penelitian' => route('admin.penelitian.index'),
         'Edit' => '#'
     ]) !!}
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.dosen.create'), 'icon-plus', 'Tambah Mahasiswa') !!}
-    {!! cui_toolbar_btn(route('admin.dosen.index'), 'icon-list', 'List Mahasiswa') !!}
+    {!! cui_toolbar_btn(route('admin.penelitian.create'), 'icon-plus', 'Tambah Penelitian') !!}
+    {!! cui_toolbar_btn(route('admin.penelitian.index'), 'icon-list', 'List Penelitian') !!}
 @endsection
 
 @section('content')
@@ -18,16 +18,16 @@
         <div class="col-md-12">
             <div class="card">
 
-                {{ Form::model($mahasiswa, ['route' => ['admin.mahasiswa.update', $mahasiswa->id], 'method' => 'patch']) }}
+                {{ Form::model($penelitian, ['route' => ['admin.penelitian.update', $penelitian->id], 'method' => 'patch', 'files' => 'true']) }}
 
                 {{--CARD HEADER --}}
                 <div class="card-header">
-                    Edit Mahasiswa
+                    Edit Penelitian
                 </div>
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
-                    @include('backend.mahasiswa._form')
+                    @include('backend.penelitian._form')
                 </div>
 
                 {{-- CARD FOOTER--}}
