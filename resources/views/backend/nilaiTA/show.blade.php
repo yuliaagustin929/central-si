@@ -44,6 +44,41 @@
                         {{ Form::text('angkatan', null, ['class' => 'form-control-plaintext', 'id' => 'angkatan', 'readonly' => 'readonly']) }}
                     </div>
 
+                    <div class="form-group">
+                        <label for="sidang_at"><strong>Waktu Sidang</strong></label>
+                        {{ Form::text('date','sidang_at', null, ['class' => 'form-control-plaintext', 'id' => 'sidang_at', 'readonly' => 'readonly']) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sidang_time"><strong>Jam Sidang</strong></label>
+                        {{ Form::text('time','sidang_time', null, ['class' => 'form-control-plaintext', 'id' => 'sidang_time', 'readonly' => 'readonly']) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status"><strong>Status</strong></label>
+                        {{ Form::input('status', null, ['class' => 'form-control-plaintext', 'id' => 'status', 'readonly' => 'readonly']) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nilai_angka"><strong>Nilai Angka</strong></label>
+                        {{ Form::text('nilai_angka, null, ['class' => 'form-control-plaintext', 'id' => 'nilai_angka', 'readonly' => 'readonly']) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nilai_huruf"><strong>Nilai Huruf</strong></label>
+                        {{ Form::text('nilai_huruf', null, ['class' => 'form-control-plaintext', 'id' => 'nilai_huruf', 'readonly' => 'readonly']) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nilai_toefl"><strong>Nilai Toefl</strong></label>
+                        {{ Form::text('nilai_toefl', null, ['class' => 'form-control-plaintext', 'id' => 'nilai_toefl', 'readonly' => 'readonly']) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nilai_akhir_ta"><strong>Nilai Akhir Tugas Akhir</strong></label>
+                        {{ Form::text('nilai_akhir_ta', null, ['class' => 'form-control-plaintext', 'id' => 'nilai_akhir_ta', 'readonly' => 'readonly']) }}
+                    </div>
+
                    
                     {{ Form::close() }}
 

@@ -48,4 +48,14 @@ class nilaiTAController extends Controller
     {
         return view('backend.nilaiTA.edit', compact('nilaiTA'));
     }
+
+    public function destroy(nilaiTA $nilaiTA)
+    {
+        $user = User::find($nilaiTA->id);
+        $nilaiTA->delete();
+        optional($user)->delete();
+
+        session()->flash('flash_success', "Berhasil menghapus nilai Tugas Akhir ".$nilaiTA->nama);
+        return redirect()->route('admin.nilaiTA.index');
+    }
 }
