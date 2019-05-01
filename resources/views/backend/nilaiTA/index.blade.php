@@ -19,7 +19,7 @@
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-                    <strong>List Dosen</strong>
+                    <strong>List NIlai TA</strong>
                 </div>
 
                 {{-- CARD BODY--}}
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6 justify-content-end">
                             <div class="row justify-content-end">
-                                {{ $nilaiTAs->links() }}
+                                
                             </div>
                         </div>
                     </div>
@@ -58,11 +58,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        
                         @forelse($nilaiTAs as $nilaiTA)
                             <tr>
-                                <td class="text-center">
-                                <td class="text-center">
-                                <td class="text-center">
+                                <td class="text-center">{{ $nilaiTA->mahasiswa}}</td>
+                                <td class="text-center">{{$nilaiTA->nim}}</td>
+                                <td class="text-center">{{$nilaiTA->angkatan}}</td>
+                                
                                 <td class="text-center">{{ $nilaiTA->sidang_at }}</td>
                                 <td class="text-center">{{ $nilaiTA->sidang_time }}</td>
                                 <td class="text-center">{{ $nilaiTA->status }}</td>
@@ -70,7 +72,7 @@
                                 <td class="text-center">{{ $nilaiTA->nilai_huruf }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_toefl }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_akhir_ta }}</td>
-                                <td class="text-center">
+                                <td class="text-center">{{$nilaiTA->nama}}</td>
                                 <td class="text-center">
                                     {!! cui_btn_view(route('admin.nilaiTA.show', [$nilaiTA->id])) !!}
                                     {!! cui_btn_edit(route('admin.nilaiTA.edit', [$nilaiTA->id])) !!}
@@ -90,11 +92,6 @@
                     <div class="row justify-content-end">
                         <div class="col-md-6 text-right">
 
-                        </div>
-                        <div class="col-md-6 justify-content-end">
-                            <div class="row justify-content-end">
-                                {{ $nilaiTAs->links() }}
-                            </div>
                         </div>
                     </div>
 

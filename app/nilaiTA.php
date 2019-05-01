@@ -31,9 +31,9 @@ class nilaiTA extends Model
         return $this->belongsToMany(RefFungsional::class, DosenFungsional::class, 'dosen_id', 'fungsional_id');
     }
 
-    public function mahasiswas()
+    public function ta_semhas()
     {
-        return $this->hasOne(Mahasiswa::class);
+        return $this->hasOne(TaSemhas::class,'id','ta_semhas_id');
     }
 }
 
