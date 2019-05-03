@@ -42,16 +42,17 @@ Route::middleware(['auth'])->group( function(){
 
     /** Routing untuk tugas mulai dari sini */
     /** Pengelolaan Nilai Tugas Akhir */
-    Route::get('/admin/nilaiTA', 'nilaiTAController@index')->name('admin.nilaiTA.index');  //routing lihat daftar nilaiTA
-    Route::post('/admin/nilaiTA', 'nilaiTAController@store')->name('admin.nilaiTA.store'); //routing simpan data nilaiTA baru
-    Route::get('/admin/nilaiTA/create', 'nilaiTAController@create')->name('admin.nilaiTA.create'); //routing tampilkan form data nilaiTA baru
-    Route::delete('/admin/nilaiTA/{mahasiswa}', 'nilaiTAController@destroy')->name('admin.nilaiTA.destroy'); //routing hapus data nilaiTA baru
-    Route::patch('/admin/nilaiTA/{mahasiswa}', 'nilaiTAController@update')->name('admin.nilaiTA.update'); //routing simpan perubahan data nilaiTA
-    Route::get('/admin/nilaiTA/{mahasiswa}', 'nilaiTAController@show')->name('admin.nilaiTA.show'); //routing tampilkan detail nilaiTA
-    Route::get('/admin/nilaiTA/{mahasiswa}/edit', 'nilaiTAController@edit')->name('admin.nilaiTA.edit');  //routing tampilkan form edit nilaiTA
-    Route::post('/admin/nilaiTA', 'nilaiTAController@index')->name('admin.nilaiTA.index'); //routing pencarian nilaiTA
+    Route::get('/admin/nilaiTA', 'NilaiTAController@index')->name('admin.nilaiTA.index');  //routing lihat daftar nilaiTA
+    Route::post('/admin/nilaiTA', 'NilaiTAController@store')->name('admin.nilaiTA.store'); //routing simpan data nilaiTA baru
+    Route::get('/admin/nilaiTA/create', 'NilaiTAController@create')->name('admin.nilaiTA.create'); //routing tampilkan form data nilaiTA baru
+    Route::delete('/admin/nilaiTA/{nilaiTA}', 'NilaiTAController@destroy')->name('admin.nilaiTA.destroy'); //routing hapus data nilaiTA baru
+    Route::patch('/admin/nilaiTA/{nilaiTA}', 'NilaiTAController@update')->name('admin.nilaiTA.update'); //routing simpan perubahan data nilaiTA
+    Route::get('/admin/nilaiTA/{nilaiTA}', 'NilaiTAController@show')->name('admin.nilaiTA.show'); //routing tampilkan detail nilaiTA
+    Route::get('/admin/nilaiTA/{nilaiTAs}/edit', 'NilaiTAController@edit')->name('admin.nilaiTA.edit');  //routing tampilkan form edit nilaiTA
+    Route::post('/admin/nilaiTA', 'NilaiTAController@index')->name('admin.nilaiTA.index'); //routing pencarian nilaiTA
 
-
+    //Route::post('/admin/nilaiTA/cari', 'nilaiTAcariController@show')->name('admin.nilaiTA.show'); //routing pencarian dosen
+    //Route::get('/admin/nilaiTA/cari', 'nilaiTAcariController@index')->name('admin.nilaiTA.index'); //routing pencarian dosen
 
     Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
     Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');

@@ -19,7 +19,7 @@
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-                    <strong>List NIlai TA</strong>
+                    <strong>List Nilai TA</strong>
                 </div>
 
                 {{-- CARD BODY--}}
@@ -64,7 +64,6 @@
                                 <td class="text-center">{{ $nilaiTA->mahasiswa}}</td>
                                 <td class="text-center">{{$nilaiTA->nim}}</td>
                                 <td class="text-center">{{$nilaiTA->angkatan}}</td>
-                                
                                 <td class="text-center">{{ $nilaiTA->sidang_at }}</td>
                                 <td class="text-center">{{ $nilaiTA->sidang_time }}</td>
                                 <td class="text-center">{{ $nilaiTA->status }}</td>
@@ -74,6 +73,7 @@
                                 <td class="text-center">{{ $nilaiTA->nilai_akhir_ta }}</td>
                                 <td class="text-center">{{$nilaiTA->nama}}</td>
                                 <td class="text-center">
+                                
                                     {!! cui_btn_view(route('admin.nilaiTA.show', [$nilaiTA->id])) !!}
                                     {!! cui_btn_edit(route('admin.nilaiTA.edit', [$nilaiTA->id])) !!}
                                     {!! cui_btn_delete(route('admin.nilaiTA.destroy', [$nilaiTA->id]), "Anda yakin akan menghapus data nilai tugas akhir ini?") !!}

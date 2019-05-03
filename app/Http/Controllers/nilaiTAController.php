@@ -7,13 +7,21 @@ use App\User;
 use Illuminate\Http\Request;
 use DB;
 
-class nilaiTAController extends Controller
+class NilaiTAController extends Controller
 {
     public function index()
     {
         // $nilaiTAs = nilaiTA::paginate(25);
         // dd(nilaiTA::find(2)->ta_semhas->peserta_semhas->mahasiswa);
-        $nilaiTAs = nilaiTA::select('mahasiswa.nama as mahasiswa','mahasiswa.nim as nim','mahasiswa.angkatan as angkatan','ta_sidang.sidang_at as sidang_at','ta_sidang.sidang_time as sidang_time','ta_sidang.status as status','ta_sidang.nilai_angka as nilai_angka','ta_sidang.nilai_huruf as nilai_huruf','ta_sidang.nilai_toefl as nilai_toefl','ta_sidang.nilai_akhir_ta as nilai_akhir_ta','dosen.nama as nama')->join('ta_semhas','ta_sidang.ta_semhas_id','=','ta_semhas.id')->join('ta_peserta_semhas','ta_semhas.id','=','ta_peserta_semhas.ta_semhas_id')->join('mahasiswa','ta_peserta_semhas.mahasiswa_id','=','mahasiswa.id');
+        $nilaiTAs = nilaiTA::select('ta_sidang.id', 'mahasiswa.nama as mahasiswa','mahasiswa.nim 
+        as nim','mahasiswa.angkatan as angkatan','ta_sidang.sidang_at as sidang_at',
+        'ta_sidang.sidang_time as sidang_time','ta_sidang.status as status',
+        'ta_sidang.nilai_angka as nilai_angka','ta_sidang.nilai_huruf as nilai_huruf',
+        'ta_sidang.nilai_toefl as nilai_toefl','ta_sidang.nilai_akhir_ta as nilai_akhir_ta',
+        'dosen.nama as nama')->join('ta_semhas','ta_sidang.ta_semhas_id','=',
+        'ta_semhas.id')->join('ta_peserta_semhas','ta_semhas.id','=',
+        'ta_peserta_semhas.ta_semhas_id')->join('mahasiswa','ta_peserta_semhas.mahasiswa_id',
+        '=','mahasiswa.id');
         $nilaiTAs = $nilaiTAs->join('ta_penguji_sidang','ta_sidang.id','=','ta_penguji_sidang.ta_sidang_id')->join('dosen','ta_penguji_sidang.dosen_id','=','dosen.id')->get();
         // $nilaiTAs =DB::table('mahasiswa')
         //     ->join('ta_peserta_semhas', 'ta_peserta_semhas.mahasiswa_id', '=', 'mahasiswa.id')
@@ -25,7 +33,7 @@ class nilaiTAController extends Controller
 
 
 // dd($nilaiTAs);
-        //dd($nilaiTAs);
+        // dd($nilaiTAs);
 
         return view('backend.nilaiTA.index', compact('nilaiTAs'));
     }

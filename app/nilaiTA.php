@@ -19,7 +19,7 @@ class nilaiTA extends Model
     public function getEmailAttribute($value)
     {
         return optional($this->user)->email;
-    }
+    } 
 
     public function publikasis()
     {

@@ -15,17 +15,17 @@
 
 <div class="form-group">
     <label for="sidang_at"> Waktu Sidang</label>
-    {{ Form::text('date','sidang_at', null, ['class' => 'form-control', 'id' => 'sidang_at', 'placeholder' => 'waktu Sidang']) }}
+    {{ Form::input('date','sidang_at', null, ['class' => 'form-control', 'id' => 'sidang_at', 'placeholder' => 'waktu Sidang']) }}
 </div>
 
 <div class="form-group">
     <label for="sidang_time">Jam Sidang</label>
-    {{ Form::text('time','sidang_time', null, ['class' => 'form-control', 'id' => 'sidang_time', 'placeholder' => 'Jam Sidang']) }}
+    {{ Form::input('time','sidang_time', null, ['class' => 'form-control', 'id' => 'sidang_time', 'placeholder' => 'Jam Sidang']) }}
 </div>
 
 <div class="form-group">
     <label for="status">Status</label>
-    {{ Form::input('status', null, ['class' => 'form-control', 'id' => 'status', 'placeholder' => 'status']) }}
+    {{ Form::text('status', null, ['class' => 'form-control', 'id' => 'status', 'placeholder' => 'status']) }}
 </div>
 
 <div class="form-group">
