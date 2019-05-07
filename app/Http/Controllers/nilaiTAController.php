@@ -6,9 +6,17 @@ use App\nilaiTA;
 use App\User;
 use Illuminate\Http\Request;
 use DB;
+use App\TaSidang;
 
 class NilaiTAController extends Controller
 {
+    public $validation_rules = [
+        'nilai_angka' => 'required',
+        'nilai_huruf' => 'required',
+        'nilai_toefl' => 'required',
+        'nilai_akhir_ta' => 'required',
+    ];
+
     public function index()
     {
         // $nilaiTAs = nilaiTA::paginate(25);
@@ -26,51 +34,57 @@ class NilaiTAController extends Controller
         // $nilaiTAs =DB::table('mahasiswa')
         //     ->join('ta_peserta_semhas', 'ta_peserta_semhas.mahasiswa_id', '=', 'mahasiswa.id')
         //     ->join('ta_semhas', 'ta_semhas.id','=','ta_peserta_semhas.ta_semhas_id')
-        //     //->join('ta_sidang', 'ta_sidang.ta_semhas_id','=','ta_semhas.id') //'ta_sidang.ta_semhas_id'
-        //     // ->join('ta_penguji_sidang', 'ta_penguji_sidang.ta_sidang_id','=','ta_peserta_semhas.id')        
-        //     // ->join('dosen', 'dosen.id','=','ta_penguji_sidang.dosen_id')        
+        //     ->join('ta_sidang', 'ta_sidang.ta_semhas_id','=','ta_semhas.id') //'ta_sidang.ta_semhas_id'
+        //     ->join('ta_penguji_sidang', 'ta_penguji_sidang.ta_sidang_id','=','ta_peserta_semhas.id')        
+        //     ->join('dosen', 'dosen.id','=','ta_penguji_sidang.dosen_id')        
         // ->select('mahasiswa.nama', 'mahasiswa.nim', 'mahasiswa.angkatan')->get();
 
 
-// dd($nilaiTAs);
+        // dd($nilaiTAs);
         // dd($nilaiTAs);
 
         return view('backend.nilaiTA.index', compact('nilaiTAs'));
     }
-    public function update(Request $request, nilaiTA $nilaiTA)
+
+    public function update(Request $request, $nilaiTA)
     {
-        $this->validate($request, $this->validation_rules);
+        // $this->validate($request, $this->validation_rules);
 
-        $dosen->update($request->only(
-            'sidang_at',
-            'sidang_time',
-            'status',
-            'nilai_angka',
-            'nilai_huruf',
-            'nilai_toefl',
-            'nilai_akhir_ta'));
+        // $nilaiTA->update($request->only(
+        //     'nilai_angka',
+        //     'nilai_huruf',
+        //     'nilai_toefl',
+        //     'nilai_akhir_ta'));
 
-        $dosen->user->update([
-            'password' => bcrypt('secret'),
-            'email' => request('email'),
-            'status' => 1,
-        ]);
+        // $nilaiTA->user->update([
+        //     'password' => bcrypt('secret'),
+        //     'email' => request('email'),
+        //     'status' => 1,
+        // ]);
+        $nilaiTA = TaSidang::findOrFail($nilaiTA);
+        $data = $request->all();
+        $nilaiTA->update($data);
+        // dd($nilaiTA);
 
         session()->flash('flash_success', 'Berhasil mengupdate data nilaiTA '.$nilaiTA->nama);
         return redirect()->route('admin.nilaiTA.show', [$nilaiTA->id]);
     }
+
     public function create()
     {
         return view('backend.nilaiTA.create');
     }
-    public function show(nilaiTA $nilaiTA)
+    
+    public function show($nilaiTA)
     {
+        $nilaiTA = TaSidang::findOrFail($nilaiTA);
         return view('backend.nilaiTA.show', compact('nilaiTA'));
     }
 
-    public function edit(nilaiTA $nilaiTA)
+    public function edit($id)
     {
-
+        $nilaiTA = TaSidang::findOrFail($id);
+        // dd($nilaiTA);
         return view('backend.nilaiTA.edit', compact('nilaiTA'));
     }
 
@@ -83,4 +97,32 @@ class NilaiTAController extends Controller
         session()->flash('flash_success', "Berhasil menghapus nilai Tugas Akhir ".$nilaiTA->nama);
         return redirect()->route('admin.nilaiTA.index');
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        nilaiTA::create($data);
+        //$this->validate($request, $this->validation_rules);
+
+        //$user = User::create([
+            //'username' => request('nip'),
+            //'email' => request('email'),
+            //'password' => bcrypt('nip'),
+            //'status' => 1,
+            //'type' => User::DOSEN
+       // ]);
+
+        //$user->dosen()->create($request->only(
+           // 'nip',
+           // 'nidn',
+            //'nik',
+            //'nama',
+            //'tanggal_lahir',
+            //'tempat_lahir',
+            //'nohp'));
+
+        session()->flash('flash_success', 'Berhasil menambahkan data dosen atas nama '. $request->input('nama'));
+        return redirect()->route('admin.nilaiTA.index');
+    }
+
 }

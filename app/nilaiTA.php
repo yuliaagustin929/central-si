@@ -35,5 +35,8 @@ class nilaiTA extends Model
     {
         return $this->hasOne(TaSemhas::class,'id','ta_semhas_id');
     }
+ 
+
+    
 }
 

@@ -8,9 +8,6 @@
     ]) !!}
 @endsection
 
-@section('toolbar')
-    {!! cui_toolbar_btn(route('admin.nilaiTA.create'), 'icon-plus', 'Tambah nilaiTA') !!}
-@endsection
 
 @section('content')
     <div class="row justify-content-center">
@@ -22,33 +19,11 @@
                     <strong>List Nilai TA</strong>
                 </div>
 
-                {{-- CARD BODY--}}
-                <div class="card-body">
-
-                    <div class="row justify-content-end">
-                        <div class="col-md-6 text-right">
-                            <form method="post" action="{{ route('admin.dosencari.show') }}" class="form-inline">
-                                {{ csrf_field() }}
-                                <input type="text" name="keyword" class="form-control" value="@if(isset($keyword)) {{ $keyword }} @endif" placeholder="Masukkan Keyword" />
-                                <input type="submit" name="submit" class="btn btn-primary" value="Cari" />
-                            </form>
-                        </div>
-                        <div class="col-md-6 justify-content-end">
-                            <div class="row justify-content-end">
-                                
-                            </div>
-                        </div>
-                    </div>
-
+                    <div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th class="text-center">Nama Mahasiswa</th>
-                            <th class="text-center">NIM</th>
-                            <th class="text-center">Angkatan</th>
-                            <th class="text-center">Waktu Sidang</th>
-                            <th class="text-center">Jam Sidang</th>
-                            <th class="text-center">Status</th>
                             <th class="text-center">Nilai Angka</th>
                             <th class="text-center">Nilai Huruf</th>
                             <th class="text-center">Nilai Toefl</th>
@@ -62,11 +37,6 @@
                         @forelse($nilaiTAs as $nilaiTA)
                             <tr>
                                 <td class="text-center">{{ $nilaiTA->mahasiswa}}</td>
-                                <td class="text-center">{{$nilaiTA->nim}}</td>
-                                <td class="text-center">{{$nilaiTA->angkatan}}</td>
-                                <td class="text-center">{{ $nilaiTA->sidang_at }}</td>
-                                <td class="text-center">{{ $nilaiTA->sidang_time }}</td>
-                                <td class="text-center">{{ $nilaiTA->status }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_angka }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_huruf }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_toefl }}</td>
