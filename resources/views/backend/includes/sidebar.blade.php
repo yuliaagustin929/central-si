@@ -63,10 +63,11 @@
                     </li>
                 </ul>
             </li>
+            
                   {{-- Menu keluarga--}}
              <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.keluarga.index') }}">
-                            <i class="nav-icon fas fa-minus"></i> Keluarga
+                            <i class="nav-icon fas fa-female"></i> Keluarga
                         </a>
                     </li>
         </ul>

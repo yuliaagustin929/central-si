@@ -48,13 +48,13 @@
                         <tbody>
                         @forelse($keluargas  as $keluarga )
                             <tr>
-                                <td>{{$daftar_keluarga ->nama }}</td>
+                                <td>{{$keluarga ->nama }}</td>
                                 <td class="text-center">{{$keluarga ->alamat }}</td>
                                 <td class="text-center">{{ $keluarga ->no_hp }}</td>
                                 <td class="text-center">
                                     {!! cui_btn_view(route('admin.keluarga.show', [$keluarga->id])) !!}
                                     {!! cui_btn_edit(route('admin.keluarga.edit', [$keluarga->id])) !!}
-                                    {!! cui_btn_delete(route('admin.keluarga.destroy', [$daftar_keluarga->id]), "Anda yakin akan menghapus data keluarga ini?") !!}
+                                    {!! cui_btn_delete(route('admin.keluarga.destroy', [$kelurga->id]), "Anda yakin akan menghapus data keluarga ini?") !!}
                                 </td>
                             </tr>
 
