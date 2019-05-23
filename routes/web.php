@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group( function(){
     Route::get('/admin/nilaiTA/create', 'NilaiTAController@create')->name('admin.nilaiTA.create'); //routing tampilkan form data nilaiTA baru
     Route::delete('/admin/nilaiTA/{nilaiTA}', 'NilaiTAController@destroy')->name('admin.nilaiTA.destroy'); //routing hapus data nilaiTA baru
     Route::patch('/admin/nilaiTA/{id}', 'NilaiTAController@update')->name('admin.nilaiTA.update'); //routing simpan perubahan data nilaiTA
-    Route::get('/admin/nilaiTA/{nilaiTA}', 'NilaiTAController@show')->name('admin.nilaiTA.show'); //routing tampilkan detail nilaiTA
+    Route::get('/admin/nilaiTA/{id}', 'NilaiTAController@show')->name('admin.nilaiTA.show'); //routing tampilkan detail nilaiTA
     Route::get('/admin/nilaiTA/{id}/edit', 'NilaiTAController@edit')->name('admin.nilaiTA.edit');  //routing tampilkan form edit nilaiTA
     Route::post('/admin/nilaiTA', 'NilaiTAController@index')->name('admin.nilaiTA.index'); //routing pencarian nilaiTA
 
