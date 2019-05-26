@@ -3,13 +3,13 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-        'pengabdian' => route('admin.pengabdian.index'),
+        'Pengabdian' => route('admin.pengabdian.index'),
         'Index' => '#'
     ]) !!}
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.pengabdian.create'), 'icon-plus', 'Tambah pengabdian') !!}
+    {!! cui_toolbar_btn(route('admin.pengabdiananggota.create', [$id]), 'icon-plus', 'Tambah Anggtoa Pengabdian') !!}
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-                    Daftar Pengabdian
+                    Daftar Anggtoa Pengabdian
                 </div>
 
                 {{-- CARD BODY--}}
@@ -38,23 +38,16 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th class="text-center">Judul</th>
-                            <th class="text-center">Tahun</th>
-                            <th class="text-center">Total Dana</th>
+                            <th class="text-center">Nama</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($Pengabdians as $pengabdian)
                             <tr>
-                                <td>{{ $pengabdian->judul }}</td>
-                                <td class="text-center">{{ $pengabdian->tahun }}</td>
-                                <td class="text-center">{{ $pengabdian->total_dana }}</td>
+                                <td>{{ $pengabdian->nama }}</td>
                                 <td class="text-center">
-                                    {!! cui_btn_view(route('admin.pengabdian.show', [$pengabdian->id])) !!}
-                                    {!! cui_btn_edit(route('admin.pengabdian.edit', [$pengabdian->id])) !!}
-                                    {!! cui_btn_delete(route('admin.pengabdian.destroy', [$pengabdian->id]), "Anda yakin akan menghapus data pengabdian ini?") !!}
-                                    - !{!! cui_btn_view(route('admin.pengabdiananggota.index', [$pengabdian->id]), " Anggota") !!}
+                                    {!! cui_btn_delete(route('admin.pengabdiananggota.destroy', [$pengabdian->id]), "Anda yakin akan menghapus anggota pengabdian ini?") !!}
                                 </td>
                             </tr>
                         @endforeach

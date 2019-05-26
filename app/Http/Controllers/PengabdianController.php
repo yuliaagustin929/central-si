@@ -38,8 +38,57 @@ public function show(pengabdian $pengabdian)
     }
 
 
-    public function create()
+
+    public function store(Request $request){
+      
+        $request->validate([
+            'judul'=>'required',
+            'tahun'=>'required|digits:4',
+            'total_dana'=>'required',
+            'skema_pengabdian_id'=>'required',
+            'sumber_dana_id'=>'required',
+            'file_kontrak '=>'file|mimes:pdf',
+            'file_laporan'=>'file|mimes:pdf',
+        ]);
+        $pengabdian =new Pengabdian();
+        $pengabdian->judul =$request->input('judul');
+        $pengabdian->tahun =$request->input('tahun');
+        $pengabdian->total_dana=$request->input('total_dana');
+        $pengabdian->skema_pengabdian_id=$request->input('skema_pengabdian_id');
+        $pengabdian->sumber_dana_id =$request->input('sumber_dana_id');
+
+    if($request->file('file_kontrak')->isValid())
     {
+                $filename=uniqid('kontrak-pengabdian-');
+                $fileext =$request->file('file_kontrak')->extension();
+                $filenameext =$filename.$fileext;
+                $filepath=$request->input('file_kontrak')->storeAs('pengabdian_kontrak',$filenameext);
+                $pengabdian->file_kontrak=$file_path;
+         }
+
+
+         if($request->file('file_laporan')->isValid())
+    {
+                $filename=uniqid('laporan-pengabdian-');
+                $fileext =$request->file('file_laporan')->extension();
+                $filenameext =$filename.fileext;
+                $filepath=$request->input('file_laporan')->storeAs('pengabdian_laporan',$filenameext);
+                $pengabdian->file_laporan=$file_path;
+                
+
+
+         }
+            $pengabdian->save();
+
+            return redirect()->route('admin.pengabdian.show',[$pengabdian->id]);
+
+        }
+    
+    
+
+
+    public function create()
+{   
         $skema_pengabdian = RefSkemapengabdian::pluck('nama','id');
         $sumber_dana =RefSumberdana::pluck('nama','id');
 
@@ -49,6 +98,7 @@ public function show(pengabdian $pengabdian)
     }
 
 
+   
     public function destroy($id){
         Pengabdian::destroy($id);
         return redirect()->route('admin.pengabdian.index');

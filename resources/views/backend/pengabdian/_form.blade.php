@@ -25,11 +25,11 @@
 
 <div class="form-group">
     <label for="file_kontrak">file_kontrak</label>
-    {{ Form::text('file_kontrak', null, ['class' => 'form-control', 'id' => 'file_kontrak', 'placeholder' => 'file kontrak']) }}
+    {{ Form::file('file_kontrak', null, ['class' => 'form-control', 'id' => 'file_kontrak', 'placeholder' => 'file kontrak']) }}
 </div>
 
 <div class="form-group">
-    <label for="file_laporan">No. HP</label>
-    {{ Form::text('file_laporan', null, ['class' => 'form-control', 'id' => 'file_laporan', 'placeholder' => 'file_laporan']) }}
+    <label for="file_laporan">file laporan</label>
+    {{ Form::file('file_laporan', null, ['class' => 'form-control', 'id' => 'file_laporan', 'placeholder' => 'file_laporan']) }}
 </div>
 
