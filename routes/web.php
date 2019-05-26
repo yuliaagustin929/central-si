@@ -41,9 +41,15 @@ Route::middleware(['auth'])->group( function(){
     Route::get('/admin/mahasiswa/{mahasiswa}/edit', 'MahasiswaController@edit')->name('admin.mahasiswa.edit');  //routing tampilkan form edit mahasiswa
 
     /** Routing untuk tugas mulai dari sini */
-    Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
-    Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');
-
+   /** PENGELOLAAN PENGABDIAN */
+   Route::get('/admin/pengabdian', 'PengabdianController@index')->name('admin.pengabdian.index'); 
+   Route::post('/admin/pengabdian', 'PengabdianController@store')->name('admin.pengabdian.store');
+   Route::get('/admin/pengabdian/create', 'PengabdianController@create')->name('admin.pengabdian.create'); 
+   Route::delete('/admin/pengabdian/{pengabdian}', 'PengabdianController@destroy')->name('admin.pengabdian.destroy'); 
+   Route::patch('/admin/pengabdian/{pengabdian}', 'PengabdianController@update')->name('admin.pengabdian.update');
+   Route::get('/admin/pengabdian/{pengabdian}', 'PengabdianController@show')->name('admin.pengabdian.show');
+   Route::get('/admin/pengabdian/{pengabdian}/edit', 'PengabdianController@edit')->name('admin.pengabdian.edit'); 
+  
 });
 
 Route::get('/', function () {

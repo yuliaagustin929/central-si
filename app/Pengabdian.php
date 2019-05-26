@@ -10,4 +10,8 @@ class Pengabdian extends Model
     protected $guarded = [];
 
     // Tambahkan Kode yang diperlukan dibawah ini
+    public function members()
+    {
+        return $this->hasMany(PengabdianUser::class);
+    }
 }
