@@ -8,6 +8,9 @@
     ]) !!}
 @endsection
 
+@section('toolbar')
+    {!! cui_toolbar_btn(route('admin.nilaiTA.create'), 'icon-plus', 'Tambah Nilai Tugas Akhir') !!}
+@endsection
 
 @section('content')
     <div class="row justify-content-center">
@@ -19,16 +22,25 @@
                     <strong>List Nilai TA</strong>
                 </div>
 
-                    <div>
-                    <table class="table table-striped">
+                <div class="card-body">
+
+                    <div class="row justify-content-end">
+                        <div class="col-md-6 text-right">
+                        </div>
+                        <div class="col-md-6 justify-content-end">
+                            <div class="row justify-content-end">
+                                {{ $nilaiTAs->links() }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <table class="table table-striped table-hover">
                         <thead>
                         <tr>
                             <th class="text-center">Nama Mahasiswa</th>
+                            <th class="text-center">Judul Tugas AKhir</th>
                             <th class="text-center">Nilai Angka</th>
-                            <th class="text-center">Nilai Huruf</th>
-                            <th class="text-center">Nilai Toefl</th>
-                            <th class="text-center">Nilai Tugas Akhir</th>
-                            <th class="text-center">Dosen</th>
+                            <th class="text-center">Nilai TA</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
@@ -36,24 +48,20 @@
                         
                         @forelse($nilaiTAs as $nilaiTA)
                             <tr>
-                                <td class="text-center">{{ $nilaiTA->mahasiswa}}</td>
+                                <td>{{ $nilaiTA->nama }}</td>
+                                <td>{{ $nilaiTA->judul }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_angka }}</td>
-                                <td class="text-center">{{ $nilaiTA->nilai_huruf }}</td>
-                                <td class="text-center">{{ $nilaiTA->nilai_toefl }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_akhir_ta }}</td>
-                                <td class="text-center">{{$nilaiTA->nama}}</td>
+                            
                                 <td class="text-center">
-                                
-                                    {!! cui_btn_view(route('admin.nilaiTA.show', [$nilaiTA->id])) !!}
                                     {!! cui_btn_edit(route('admin.nilaiTA.edit', [$nilaiTA->id])) !!}
-                                    {!! cui_btn_delete(route('admin.nilaiTA.destroy', [$nilaiTA->id]), "Anda yakin akan menghapus data nilai tugas akhir ini?") !!}
                                 </td>
                             </tr>
-
                         @empty
                             <tr>
                                 <td colspan="12" class="text-center">
-                                <h8> data penelitian belum ada </h8>
+                                <h6> data nilai TA belum ada </h6>
+                                </td>
                             </tr>
                         @endforelse
                         </tbody>
@@ -62,6 +70,11 @@
                     <div class="row justify-content-end">
                         <div class="col-md-6 text-right">
 
+                        </div>
+                        <div class="col-md-6 justify-content-end">
+                            <div class="row justify-content-end">
+                                {{ $nilaiTAs->links() }}
+                            </div>
                         </div>
                     </div>
 
