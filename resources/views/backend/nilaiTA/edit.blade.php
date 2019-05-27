@@ -50,7 +50,7 @@
 
                     <div class="form-group">
                         <label for="nilai_akhir_ta">Nilai Akhir Tugas Akhir</label>
-                        {{ Form::select('nilai_akhir_ta', ['A'=>'A', 'A-'=>'A-', 'B+'=>'B+', 'B'=>'B', 'B-'=>'B', 'C+'=>'C+', 'C'=>'C'],null, ['class' => 'form-control', 'id' => 'nilai_akhir_ta', 'placeholder' => 'Nilai Akhir Tugas Akhir']) }}
+                        {{ Form::select('nilai_akhir_ta', ['A'=>'A', 'A-'=>'A-', 'B+'=>'B+', 'B'=>'B', 'B-'=>'B-', 'C+'=>'C+', 'C'=>'C'],null, ['class' => 'form-control', 'id' => 'nilai_akhir_ta', 'placeholder' => 'Nilai Akhir Tugas Akhir']) }}
                     </div>
 
                 </div>
