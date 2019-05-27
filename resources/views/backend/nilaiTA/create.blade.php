@@ -26,6 +26,12 @@
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
+
+                    <!-- <div class="form-group">
+                        <label for="nilai_angka">Nilai Angka</label>
+                        {{ Form::text('nilai_angka', null, ['class' => 'form-control', 'id' => 'nilai_angka']) }}
+                    </div> -->
+                    
                     <div class="form-group">
                         <label for="judul">Judul Tugas Akhir</label>
                         {{ Form::select('judul', $judul, null, ['class' => 'form-control', 'id' => 'judul']) }}
@@ -37,9 +43,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="nilai_angka">Nilai Akhir Tugas Akhir</label>
-                        {{ Form::text('nilai_akhir_ta', null, ['class' => 'form-control', 'id' => 'nilai_akhir_ta']) }}
+                        <label for="nilai_akhir_ta">Nilai Akhir Tugas Akhir</label>
+                        {{ Form::select('nilai_akhir_ta', ['A'=>'A', 'A-'=>'A-', 'B+'=>'B+', 'B'=>'B', 'B-'=>'B', 'C+'=>'C+', 'C'=>'C'],null, ['class' => 'form-control', 'id' => 'nilai_akhir_ta', 'placeholder' => 'Nilai Akhir Tugas Akhir']) }}
                     </div>
+
+
                 </div>
 
                 {{--CARD FOOTER--}}

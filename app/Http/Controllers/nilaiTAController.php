@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use DB;
 use App\TaSidang;
+use App\TugasAkhir;
 
 class NilaiTAController extends Controller
 {
@@ -25,13 +26,14 @@ class NilaiTAController extends Controller
         ->join('mahasiswa','tugas_akhir.mahasiswa_id','=','mahasiswa.id')
         ->orWhereNotNull('ta_sidang.nilai_angka')
         ->orWhereNotNull('ta_sidang.nilai_akhir_ta')
-        ->paginate(20);
+        ->paginate(10);
 
         return view('backend.nilaiTA.index', compact('nilaiTAs'));
     }
 
     public function create()
     {
+        
         $judul = nilaiTA::
         select('tugas_akhir.judul', 'ta_sidang.id')
         ->join('ta_semhas','ta_sidang.ta_semhas_id','=', 'ta_semhas.id')
@@ -89,6 +91,12 @@ class NilaiTAController extends Controller
 
         session()->flash('flash_success', 'Berhasil mengedit nilai tugas akhir dengan judul'.$request->judul);
         return redirect()->route('admin.nilaiTA.index');
+    }
+
+    public function getnama($id)
+    {
+        $nama = TugasAkhir::find($id);
+        return $nama;
     }
 
 }

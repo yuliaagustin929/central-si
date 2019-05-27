@@ -52,7 +52,6 @@
                                 <td>{{ $nilaiTA->judul }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_angka }}</td>
                                 <td class="text-center">{{ $nilaiTA->nilai_akhir_ta }}</td>
-                            
                                 <td class="text-center">
                                     {!! cui_btn_edit(route('admin.nilaiTA.edit', [$nilaiTA->id])) !!}
                                 </td>
