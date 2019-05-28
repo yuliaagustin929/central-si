@@ -9,8 +9,8 @@
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.dosen.create'), 'icon-plus', 'Tambah Dosen') !!}
-    {!! cui_toolbar_btn(route('admin.dosen.index'), 'icon-list', 'List Dosen') !!}
+    {!! cui_toolbar_btn(route('admin.pengabdian.create'), 'icon-plus', 'Tambah pengabdian') !!}
+    {!! cui_toolbar_btn(route('admin.pengabdian.index'), 'icon-list', 'List pengabdian') !!}
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
 
-                {{ Form::model($dosen, ['route' => ['admin.dosen.update', $dosen->id], 'method' => 'patch']) }}
+                {{ Form::model($pengabdian, ['route' => ['admin.pengabdian.update', $pengabdian->id], 'method' => 'patch']) }}
 
                 {{--CARD HEADER --}}
                 <div class="card-header">
@@ -27,7 +27,9 @@
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
-                    @include('backend.dosen._form')
+
+                    @include('backend.pengabdian._form')
+                    
                 </div>
 
                 {{-- CARD FOOTER--}}

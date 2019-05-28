@@ -1,4 +1,5 @@
 <div class="form-group">
+
     <label for="judul">Judul</label>
     {{ Form::textarea('judul', null, ['class' => 'form-control', 'id' => 'judul', 'placeholder' => 'Judul Pengabdian']) }}
 </div>
@@ -32,5 +33,4 @@
     <label for="file_laporan">File Laporan (PDF)</label>
     {{ Form::file('file_laporan', null, ['class' => 'form-control', 'id' => 'file_laporan']) }}
 </div>
-
 

@@ -3,15 +3,13 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-
         'Pengabdian' => route('admin.pengabdian.index'),
         'Index' => '#'
     ]) !!}
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.pengabdian.create'), 'icon-plus', 'Tambah Pengabdian') !!}
-
+    {!! cui_toolbar_btn(route('admin.pengabdiananggota.create', [$id]), 'icon-plus', 'Tambah Anggtoa Pengabdian') !!}
 @endsection
 
 @section('content')
@@ -21,8 +19,7 @@
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-                    <strong>List Pengabdian</strong>
-
+                    Daftar Anggtoa Pengabdian
                 </div>
 
                 {{-- CARD BODY--}}
@@ -33,8 +30,7 @@
                         </div>
                         <div class="col-md-6 justify-content-end">
                             <div class="row justify-content-end">
-                                {{ $pengabdians->links() }}
-
+                                {{ $Pengabdians->links() }}
                             </div>
                         </div>
                     </div>
@@ -42,35 +38,19 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-
-                            <th class="text-center">Tahun</th>
-                            <th class="text-center">Judul</th>
-                            <th class="text-center">Jumlah Anggota</th>
+                            <th class="text-center">Nama</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-
-                        @forelse($pengabdians as $pengabdian)
+                        @foreach($Pengabdians as $pengabdian)
                             <tr>
-                                <td class="text-center">{{ $pengabdian->tahun }}</td>
-                                <td>{{ $pengabdian->judul }}</td>
-                                <td class="text-center">{{ $pengabdian->members->count()}}</td>
+                                <td>{{ $pengabdian->nama }}</td>
                                 <td class="text-center">
-                                    {!! cui_btn_view(route('admin.pengabdian.show', [$pengabdian->id])) !!}
-                                    {!! cui_btn_edit(route('admin.pengabdian.edit', [$pengabdian->id])) !!}
-                                    {!! cui_btn_delete(route('admin.pengabdian.destroy', [$pengabdian->id]), "Anda yakin akan menghapus data pengabdian ini?") !!}
-
+                                    {!! cui_btn_delete(route('admin.pengabdiananggota.destroy', [$pengabdian->id]), "Anda yakin akan menghapus anggota pengabdian ini?") !!}
                                 </td>
                             </tr>
-                            @empty
-                            <tr>
-                                <td colspan=4 class=text-center>
-                                <h4>Data pengabdian belum ada.</h4>
-                                </td>
-                            </tr>
-                        @endforelse
-                     
+                        @endforeach
                         </tbody>
                     </table>
 
@@ -80,20 +60,14 @@
                         </div>
                         <div class="col-md-6 justify-content-end">
                             <div class="row justify-content-end">
-                                {{ $pengabdians->links() }}
-
+                                {{ $Pengabdians->links() }}
                             </div>
                         </div>
                     </div>
 
-                </div><!--card-body-->
-
-                {{-- CARD FOOTER--}}
-                <div class="card-footer">
                 </div>
-
-            </div><!--card-->
-        </div><!--col-->
-    </div><!--row-->
-
+            </div>
+        </div>
+    </div>
+    </div>
 @endsection
