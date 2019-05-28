@@ -68,10 +68,13 @@
                 </ul>
             </li>
 
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.pengabdian.index') }}">
-                            <i class="nav-icon fas fa-book"></i> kelola pengabdian
 
+        <!-- PENGELOLAAN PENGABDIAN -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.pengabdian.index') }}">
+                            <i class="nav-icon fas fa-book"></i> Kelola Pengabdian
+                        </a>
+                    </li>
         </ul>
     </nav>
 

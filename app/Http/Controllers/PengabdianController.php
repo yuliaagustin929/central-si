@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Pengabdian;
 use App\RefSkemaPengabdian;
@@ -103,5 +102,6 @@ public function show(pengabdian $pengabdian)
         Pengabdian::destroy($id);
         return redirect()->route('admin.pengabdian.index');
     }
+
 
 }

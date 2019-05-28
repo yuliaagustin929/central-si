@@ -14,13 +14,14 @@
 
 @section('content')
 
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-                    Pengabdian
+
                 </div>
 
                 {{-- CARD BODY--}}
@@ -51,6 +52,7 @@
                     <div class="form-group">
                         <label for="sumber_dana_id"><strong>Sumber Dana</strong></label>
                         {{ Form::text('sumber_dana', null, ['class' => 'form-control-plaintext', 'readonly' => 'readonly']) }}
+
                     </div>
 
                     {{ Form::close() }}
@@ -64,5 +66,4 @@
             </div>
         </div>
     </div>
-
 @endsection

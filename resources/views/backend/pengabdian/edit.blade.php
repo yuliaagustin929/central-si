@@ -3,7 +3,7 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-        'pegabdian' => route('admin.pengabdian.index'),
+        'Dosen' => route('admin.dosen.index'),
         'Edit' => '#'
     ]) !!}
 @endsection
@@ -27,7 +27,9 @@
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
+
                     @include('backend.pengabdian._form')
+                    
                 </div>
 
                 {{-- CARD FOOTER--}}

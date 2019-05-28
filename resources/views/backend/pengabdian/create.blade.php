@@ -3,33 +3,33 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-        'pengabdian' => route('admin.pengabdian.index'),
+        'Pengabdian' => route('admin.pengabdian.index'),
         'Edit' => '#'
     ]) !!}
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.pengabdian.index'), 'icon-list', 'List pengabdian') !!}
+    {!! cui_toolbar_btn(route('admin.pengabdian.index'), 'icon-list', 'List Pengabdian') !!}
 @endsection
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col">
             <div class="card">
 
-                {{ Form::open(['route' => 'admin.pengabdian.store', 'method' => 'post']) }}
+                {{ Form::open(['route' => 'admin.pengabdian.store', 'method' => 'post', 'files' => 'true']) }}
 
-                {{-- CARD HEADER --}}
+                {{-- CARD HEADER--}}
                 <div class="card-header">
-                    Tambah pengabdian
+                    Tambah Pengabdian
                 </div>
 
-                {{-- CARD BODY --}}
+                {{-- CARD BODY--}}
                 <div class="card-body">
-                    @include('backend.Pengabdian._form')
+                    @include('backend.pengabdian._form')
                 </div>
 
-                {{-- CARD FOOTER --}}
+                {{--CARD FOOTER--}}
                 <div class="card-footer">
                     <input type="submit" value="Simpan" class="btn btn-primary"/>
                 </div>
@@ -38,5 +38,4 @@
             </div>
         </div>
     </div>
-
 @endsection

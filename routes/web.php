@@ -54,13 +54,17 @@ Route::post('/admin/mahasiswa/cari', 'pengabdiancariController@show')->name('adm
    Route::get('/admin/pengabdian/{pengabdian}/edit', 'pengabdianController@edit')->name('admin.pengabdian.edit');  //routing tampilkan form edit mahasiswa
 
     /** Routing untuk tugas mulai dari sini */
-   Route::get('/admin/pengabdiananggota/{id}', 'PengabdianAnggota@index')->name('admin.pengabdiananggota.index'); //routing simpan data pengabdian baru    
-   Route::delete('/admin/pengabdiananggota/{id}', 'PengabdianAnggota@destroy')->name('admin.pengabdiananggota.destroy'); //routing simpan data pengabdian baru    
-   Route::get('/admin/pengabdiananggota/{id}/add', 'PengabdianAnggota@create')->name('admin.pengabdiananggota.create'); //routing simpan data pengabdian baru    
-   Route::post('/admin/pengabdiananggota/', 'PengabdianAnggota@store')->name('admin.pengabdiananggota.store'); //routing simpan data pengabdian baru    
+
+   /** PENGELOLAAN PENGABDIAN */
+   Route::get('/admin/pengabdian', 'PengabdianController@index')->name('admin.pengabdian.index'); 
+   Route::post('/admin/pengabdian', 'PengabdianController@store')->name('admin.pengabdian.store');
+   Route::get('/admin/pengabdian/create', 'PengabdianController@create')->name('admin.pengabdian.create'); 
+   Route::delete('/admin/pengabdian/{pengabdian}', 'PengabdianController@destroy')->name('admin.pengabdian.destroy'); 
+   Route::patch('/admin/pengabdian/{pengabdian}', 'PengabdianController@update')->name('admin.pengabdian.update');
+   Route::get('/admin/pengabdian/{pengabdian}', 'PengabdianController@show')->name('admin.pengabdian.show');
+   Route::get('/admin/pengabdian/{pengabdian}/edit', 'PengabdianController@edit')->name('admin.pengabdian.edit'); 
     Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
     Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');
-
 });
 
 Route::get('/', function () {
