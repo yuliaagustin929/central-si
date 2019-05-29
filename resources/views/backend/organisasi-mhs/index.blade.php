@@ -25,26 +25,17 @@
                 {{-- CARD BODY--}}
                 <div class="card-body">
 
-                  <!--  <div class="row justify-content-end">
-                        <div class="col-md-6 text-right">
-                            <form method="post" action="{{ route('admin.organisasi-mhs.show') }}" class="form-inline">
-                                {{ csrf_field() }}
-                                <input type="text" name="keyword" class="form-control" value="@if(isset($keyword)) {{ $keyword }} @endif" placeholder="Masukkan Keyword" />
-                                <input type="submit" name="submit" class="btn btn-primary" value="Cari" />
-                            </form>
-                        </div>
-                        <div class="col-md-6 justify-content-end">
-                            <div class="row justify-content-end">
-                                {{ $mhs-organisasis->links() }}
-                            </div>
-                        </div>
-                    </div> -->
-
+                 
                     <table class="table table-striped table-hover mt-4" id="tabelOrganisasiMahasiswa">
                         <thead>
                         <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Organisasi</th>
+                            <th class="text-center">NIM</th>
+                            <th class="text-center">Nama</th> 
+                            
+                           <th class="text-center">Organisasi</th>
+                           
+                       
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
@@ -52,7 +43,14 @@
                         @foreach($mhs_organisasis as $mhs_organisasi)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $mhs_organisasi->organisasi }}</td>
+                                
+                                <td><center>{{ $mhs_organisasi->nim}}</center></td>
+                                <td><center>{{ $mhs_organisasi->nama}}</center></td>
+                               <td><center>{{ $mhs_organisasi->organisasi }}</center></td>
+                               
+
+
+
                                 <td class="text-center">
                                     {!! cui_btn_view(route('admin.organisasi-mhs.show', [$mhs_organisasi->id])) !!}
                                     {!! cui_btn_edit(route('admin.organisasi-mhs.edit', [$mhs_organisasi->id])) !!}
@@ -60,7 +58,11 @@
                                     
                                 </td>
                             </tr>
+                            <tr>
+                         
                         @endforeach
+
+                         
                         </tbody>
                     </table>
 
@@ -71,7 +73,9 @@
                         <div class="col-md-6 justify-content-end">
                             <div class="row justify-content-end">
                                 {{ $mhs_organisasis->links() }}
+
                             </div>
+                           
                         </div>
                     </div>
 

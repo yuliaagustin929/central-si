@@ -1,7 +1,4 @@
-<div class="form-group">
-    <label for="mahasiswa_id">ID Mahasiswa*</label>
-    {{ Form::text('mahasiswa_id', null, ['class' => 'form-control', 'id' => 'mahasiswa_id', 'placeholder' => 'ID Mahasiswa']) }}
-</div>
+
 <div class="form-group">
     <label for="organisasi">Organisasi*</label>
      {{ Form::text('organisasi', null, ['class' => 'form-control', 'id' => 'organisasi', 'placeholder' => 'Organisasi Mahasiswa']) }}

@@ -1,0 +1,3 @@
+daftar = nama mahasiswa tidak dimasukan kedalam tampilan
+lihat  = download dan kurang lengkap tampilannya
+edit   = file ketika sudah upload tidak harus ditambahkan lagi, boleh kosong

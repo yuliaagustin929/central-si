@@ -11,7 +11,7 @@ use DB;
 {
 
     public $organisasi_validation_rules = [
-        'mahasiswa_id' => 'required',
+       'mahasiswa_id' => 'required',
         'organisasi' => 'required',
         'jabatan_id' => 'required',
         'tgl_mulai' => 'required',
@@ -19,66 +19,97 @@ use DB;
         'file_bukti' => 'required'
     ];
 
-     public function __construct(){
-        $this->middleware(['permission:manage_organisasimhs']);
-    }
-     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+     
     public function index()
     {
-        $mhs_organisasis = MhsOrganisasi::orderBy('created_at', 'desc')->paginate(25);
-        return view('backend.organisasi-mhs.index', compact('mhs_organisasis'));
+        $mhs_organisasis = MahasiswaOrganisasi::
+                        join('mahasiswa', 'mahasiswa_organisasi.mahasiswa_id', '=', 'mahasiswa.id')->  
+                         join('ref_jabatan_organisasi', 'mahasiswa_organisasi.jabatan_id', '=', 'ref_jabatan_organisasi.id')       
+                        ->select('mahasiswa_organisasi.id', 'mahasiswa.nama', 'mahasiswa_organisasi.organisasi','mahasiswa_organisasi.jabatan_id','mahasiswa.nim','mahasiswa.nama','ref_jabatan_organisasi.jabatan')
+                        ->orderBy('mahasiswa_organisasi.created_at', 'desc')->paginate(25);
+        return view('backend.organisasi-mhs.index', compact('mhs_organisasis'));       
+        
+        //$mhs_organisasis = MahasiswaOrganisasi::orderBy('created_at', 'desc')->paginate(25);
+       
+       // return view('backend.organisasi-mhs.index', compact('mhs_organisasis'));
     }
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+     
     public function create()
         {
-             $jabatan = RefJabatanOrganisasi::pluck('jabatan', 'id');
-            return view('backend.organisasi-mhs.create', compact('jabatan'));
+           //$this->validate($request, $this->oganisasi_validate_rules);
+           //$data = $request->all();
+           //MhsOrganisasi::create($data);
+           //$id = DB::getPdo()->lastInsertID();
+           //session()->flash('flash_success','berhasil'.$request->input('organisasi'));
+           //return redirect()->route('admin.organisasi-mhs.show',$id);
+
+
+           $ref_jabatan_organisasi = RefJabatanOrganisasi::all()->pluck('jabatan','id');
+        $mahasiswa_organisasi = MahasiswaOrganisasi::all()->pluck('organisasi', 'id');
+        $mahasiswa = Mahasiswa::all()->pluck('nama', 'id');
+        return view('backend.organisasi-mhs.create', compact('ref_jabatan_organisasi', 'mahasiswa_organisasi', 'mahasiswa')); 
+            
+
+       
         }	 
 
         public function store(Request $request)
         {	 
-            $this->validate($request, $this->proposal_validation_rules);   
-            $data = $request->all();
-            MhsOrganisasi::create($data);
-            $id = DB::getPdo()->lastInsertId();
-            session()->flash('flash_success', 'Berhasil menambahkan data organisasi mahasiswa '. $request->input('organisasi'));
-            return redirect()->route('admin.organisasi-mhs.show', $id);
-        }	    
+           $this->validate($request, $this->organisasi_validation_rules);
+                 $file = $request->file('download');
+        $data = $request->except('download');
+        if($file){
+            $fileName = sha1(microtime()) . '.' . $file->getClientOriginalExtension();
+            $destinationPath = $file->storeAs('../storage/app/public', $fileName);
+            $file->move($destinationPath, $fileName);
+            $data['download'] = $fileName;
+        } 
+        MahasiswaOrganisasi::create($data);
+       session()->flash('flash_success', 'Berhasil menambahkan data organisasi '.$request->organisasi);
+       return redirect()->route('admin.organisasi-mhs.index');        
+           
+
+   }
         public function show($id)
         {	    
-            $MhsOrganisasi = DB::table('mhs_organisasi')
-            ->join('ref_jabatan_organisasi', 'mhs_organisasi.jabatan_id', '=', 'ref_jabatan_organisasi.id')
-            ->select('mhs_organisasi.id', 'mhs_organisasi.mahasiswa_id', 'mhs_organisasi.organisasi', ',mhs_organisasi.jabatan_id', 'mhs_organisasi.tgl_mulai', 'mhs_organisasi.tgl_selesai', 'mhs_organisasi.file_bukti', 'ref_jabatan_organisasi.jabatan')
-            ->where('mhs_organisasi.id', '=', $id)
-            ->get();
-            $MhsOrganisasi = $MhsOrganisasi[0];
-            $anggotas = DB::table('mhs_organisasi')
-                        ->join('mahasiswa', 'mhs_organisasi.id', '=', 'mahasiswa.mhs_organisasi_id')
-                        ->join('jabatan', 'mhs_organisasi.jabatan_id', '=', 'jabatan.id')
-                        ->where('kp_proposal.id', '=', $id)
-                        ->get();
-        
-        return view('backend.organisasi-mhs.show', compact('MhsOrganisasi', 'anggotas'));
+         
+
+            
+            $organisasi = MahasiswaOrganisasi::
+                    join('mahasiswa', 'mahasiswa_organisasi.mahasiswa_id', '=', 'mahasiswa.id')->
+                    join('ref_jabatan_organisasi', 'mahasiswa_organisasi.jabatan_id', '=', 'ref_jabatan_organisasi.id')
+                    ->select('mahasiswa_organisasi.mahasiswa_id', 'mahasiswa.nama', 'mahasiswa.nim', 'mahasiswa_organisasi.organisasi', 'mahasiswa_organisasi.tgl_mulai', 'mahasiswa_organisasi.tgl_selesai', 'mahasiswa_organisasi.file_bukti', 
+                    DB::raw('(CASE 
+                    WHEN mahasiswa_organisasi.jabatan_id = "1" THEN "General Farmworker" 
+                    WHEN mahasiswa_organisasi.jabatan_id = "2" THEN "Atmospheric and Space Scientist" 
+                    WHEN mahasiswa_organisasi.jabatan_id = "3" THEN "Welder-Fitter" 
+                    WHEN mahasiswa_organisasi.jabatan_id = "4" THEN "Writer OR Author" 
+                    WHEN mahasiswa_organisasi.jabatan_id = "5" THEN "Punching Machine Setters" 
+                    WHEN mahasiswa_organisasi.jabatan_id = "6" THEN "Septic Tank Servicer" 
+                    WHEN mahasiswa_organisasi.jabatan_id = "7" THEN "Occupational Therapist Aide" 
+                    ELSE "" END) AS jabatan_id'))
+                    ->findOrFail($id);
+        return view('backend.organisasi-mhs.show', compact('organisasi'));
+
+
+       //$organisasi = MahasiswaOrganisasi::findOrFail($id);
+
+       // return view('backend.organisasi-mhs.show',compact('organisasi'));
+
+
         }	    
         public function edit($id)
         {	    
-            $MhsOrganisasi=MhsOrganisasi::findOrFail($id);
+            $MhsOrganisasi=MahasiswaOrganisasi::findOrFail($id);
             $jabatans = RefJabatanOrganisasi::all();
+            $namas = Mahasiswa::all();
             // dd($MhsOrganisasi);
-            return view('backend.organisasi-mhs.edit', compact('MhsOrganisasi', 'jabatans'));
+            return view('backend.organisasi-mhs.edit', compact('MhsOrganisasi', 'jabatans','namas'));
         }	    
         public function update(Request $request, $id)
         {	
             $this->validate($request, $this->organisasi_validation_rules);    
-            $organisasi = MhsOrganisasi::findOrFail($id);
+            $organisasi = MahasiswaOrganisasi::findOrFail($id);
             $data = $request->all();
             $organisasi->update($data);
             session()->flash('flash_success', 'Berhasil mengupdate data organisasi '.$request->input('organisasi'));
@@ -86,10 +117,10 @@ use DB;
         }	    
         public function destroy($id)
         {	    
-            $organisasi = MhsOrganisasi::findOrFail($id);
-            $MhsOrganisasi = MhsOrganisasi::destroy($id);       
+            $organisasi = MahasiswaOrganisasi::findOrFail($id);
+            MahasiswaOrganisasi::destroy($id);       
             try{
-                MhsOrganisasi::destroy($id);
+                MahasiswaOrganisasi::destroy($id);
            session()->flash('flash_success', 'Berhasil Menghapus data organisasi '.$organisasi->organisasi);	            
             }catch(Exception $e){
                session()->flash('flash_warning', 'Gagal Menghapus data organisasi'.$organisasi->organisasi);

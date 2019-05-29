@@ -26,23 +26,26 @@
                 </div>
 
                  {{-- CARD BODY--}}
+               
+              
                 
-                 <div class="form-group">
-                        <label for="mahasiswa_id">ID Mahasiswa</label>
+                
+                <div class="card-body">
+
+                     <div class="form-group">
+                        <label for="m">Nama Mahasiswa</label>
                         <select name="mahasiswa_id" id="mahasiswa_id" class="form-control" required>
-                            @foreach($mahasiswas as $mahasiswa)
-                                <option value="{{ $mahasiswa->id }}" 
-                                    @if($mahasiswa->id==$MhsOrganisasi->mahasiswa_id) 
+                            @foreach($namas as $nama)
+                                <option value="{{ $nama->id }}" 
+                                    @if($nama->id==$MhsOrganisasi->mahasiswa_id) 
                                     selected='selected'
                                     @endif>
-                                    {{ $mahasiswa->nim }}      
+                                    {{ $nama->nama }}      
                                 </option>
                             @endforeach
                         </select>
                     </div>
-                
-                
-                <div class="card-body">
+
                     <div class="form-group">
                         <label for="organisasi">Organisasi</label>
                         {{ Form::text('organisasi', null, ['class' => 'form-control', 'id' => 'organisasi', 'placeholder' => 'Organisasi Mahasiswa', 'required' => 'required']) }}
@@ -73,11 +76,11 @@
                         <label for="tgl_selesai">Tanggal Selesai</label>
                         {{ Form::input('date', 'tgl_selesai', null, ['class' => 'form-control', 'id' => 'tgl_selesai', 'placeholder' => 'Tanggal Selesai Organisasi', 'required' => 'required']) }}
                     </div>
-
                     <div class="form-group">
-                        <label for="file_bukti">File Bukti (PDF)</label>
-                        {{ Form::file('file_bukti', null, ['class' => 'form-control', 'id' => 'file_bukti', 'placeholder' => 'File Bukti']) }}
-                     </div>
+                        <label for="file_bukti">Surat Bukti Pengesahan</label>
+                        {{ Form::file('file_bukti', null, ['class' => 'form-control', 'id' => 'file_bukti', 'placeholder' => 'File Bukti', 'required' => 'required']) }}
+                    </div>
+
 
                 </div>
 
