@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
 
-                 {{ Form::model($MhsOrganisasi, ['route' => ['admin.organisasi-mhs.update', $MhsOrganisasi->id], 'method' => 'patch']) }}
+                 {{ Form::model($MhsOrganisasi, ['route' => ['admin.organisasi-mhs.update', $MhsOrganisasi->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) }}
 
                  {{--CARD HEADER --}}
                 <div class="card-header">
@@ -64,9 +64,6 @@
                             @endforeach
                         </select>
                     </div>
-
-                     
-
                      <div class="form-group">
                         <label for="tgl_mulai">Tanggal Mulai</label>
                         {{ Form::input('date', 'tgl_mulai', null, ['class' => 'form-control', 'id' => 'tgl_mulai', 'placeholder' => 'Tanggal Mulai Organisasi', 'required' => 'required']) }}
@@ -77,7 +74,7 @@
                         {{ Form::input('date', 'tgl_selesai', null, ['class' => 'form-control', 'id' => 'tgl_selesai', 'placeholder' => 'Tanggal Selesai Organisasi', 'required' => 'required']) }}
                     </div>
                     <div class="form-group">
-                        <label for="file_bukti">Surat Bukti Pengesahan</label>
+                        <label for="file_bukti">Surat Bukti Pengesahan(.pdf)</label><br>
                         {{ Form::file('file_bukti', null, ['class' => 'form-control', 'id' => 'file_bukti', 'placeholder' => 'File Bukti', 'required' => 'required']) }}
                     </div>
 

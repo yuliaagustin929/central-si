@@ -32,10 +32,7 @@
                             <th class="text-center">No</th>
                             <th class="text-center">NIM</th>
                             <th class="text-center">Nama</th> 
-                            
-                           <th class="text-center">Organisasi</th>
-                           
-                       
+                            <th class="text-center">Organisasi</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
@@ -43,14 +40,10 @@
                         @foreach($mhs_organisasis as $mhs_organisasi)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                
                                 <td><center>{{ $mhs_organisasi->nim}}</center></td>
                                 <td><center>{{ $mhs_organisasi->nama}}</center></td>
-                               <td><center>{{ $mhs_organisasi->organisasi }}</center></td>
+                                <td><center>{{ $mhs_organisasi->organisasi }}</center></td>
                                
-
-
-
                                 <td class="text-center">
                                     {!! cui_btn_view(route('admin.organisasi-mhs.show', [$mhs_organisasi->id])) !!}
                                     {!! cui_btn_edit(route('admin.organisasi-mhs.edit', [$mhs_organisasi->id])) !!}
@@ -61,8 +54,6 @@
                             <tr>
                          
                         @endforeach
-
-                         
                         </tbody>
                     </table>
 

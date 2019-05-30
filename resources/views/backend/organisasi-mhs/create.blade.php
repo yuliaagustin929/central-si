@@ -17,7 +17,7 @@
         <div class="col">
             <div class="card">
 
-                {{ Form::open(['route' => 'admin.organisasi-mhs.store', 'method' => 'post']) }}
+                {{ Form::open(['route' => 'admin.organisasi-mhs.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) }}
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
@@ -26,11 +26,15 @@
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
-                
-                <div class="form-group">
-                    <label for="mahasiswa_id">Nama Mahasiswa*</label>
-                    {{ Form::select('mahasiswa_id', $mahasiswa, null, ['class' => 'form-control', 'id' => 'mahasiswa_id', 'placeholder' => ' Mahasiswa']) }}
+                 
+                 <div class="form-group">
+                    <label for="mahasiswa_nim">Nama Mahasiswa*</label>
+                    {{ Form::select('mahasiswa_id', $mahasiswa, null, ['class' => 'form-control', 'id' => 'mahasiswa_nim', 'placeholder' => ' Nama Mahasiswa']) }}
                 </div>
+                <!--<div class="form-group">
+                    <label for="mahasiswa_nama">Nama Mahasiswa*</label>
+                    {{ Form::select('mahasiswa_nama', $mahasiswa, null, ['class' => 'form-control', 'id' => 'mahasiswa_nama', 'placeholder' => ' Nama Mahasiswa']) }}
+                </div>-->
                 <div class="form-group">
                     <label for="organisasi">Organisasi*</label>
                     {{ Form::text('organisasi', null, ['class' => 'form-control', 'id' => 'organisasi', 'placeholder' => 'Organisasi Mahasiswa']) }}
@@ -47,14 +51,11 @@
                     <label for="tgl_selesai">Tanggal Selesai Organisasi*</label>
                     {{ Form::input('date', 'tgl_selesai', null, ['class' => 'form-control', 'id' => 'tgl_selesai', 'placeholder' => 'Tanggal Organisasi Selesai']) }}
                 </div>
-
                 <div class="form-group">
-                    <label for="file_bukti">File Bukti (PDF)</label>
+                    <label for="file_bukti">Surat Bukti Pengesahan(.pdf)</label><br>
                     {{ Form::file('file_bukti', null, ['class' => 'form-control', 'id' => 'file_bukti', 'placeholder' => 'File Bukti']) }}
-                </div>
-
-                    
-                </div>
+                </div>    
+            </div>
 
                 {{--CARD FOOTER--}}
                 <div class="card-footer">

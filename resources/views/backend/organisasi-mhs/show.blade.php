@@ -33,12 +33,11 @@
                      <div class="form-group">
                         <label for="mahasiswa_nim"> <b>NIM</b> </label>
                         {!! Form::text('nim', null, ['class' => 'form-control-plaintext', 'id' => 'nim', 'readonly' => 'readonly', 'disabled']) !!}
-                    </div><br>
+                    </div>
                     <div class="form-group">
                         <label for="mahasiswa_nama"> <b>Nama Mahasiswa</b> </label>
                         {!! Form::text('nama', null, ['class' => 'form-control-plaintext', 'id' => 'nama', 'readonly' => 'readonly', 'disabled']) !!}
                     </div>
-
                     
                      <div class="form-group">
                         <label for="organisasi"> <b>Organisasi</b> </label>
@@ -49,7 +48,7 @@
                         <label for="jabatan_id"> <b>Jabatan</b> </label>
                         {{ Form::text('jabatan_id', null, ['class' => 'form-control-plaintext', 'id' => 'jabatan_id', 'readonly' => 'readonly', 'disabled']) }}
                     </div>
-                    <br>
+                    
                      <div class="form-group">
                         <label for="tgl_mulai"> <b>Tanggal Mulai</b> </label>
                         {{ Form::input('date', 'tgl_mulai', null, ['class' => 'form-control-plaintext', 'id' => 'tgl_mulai', 'readonly' => 'readonly', 'disabled']) }}
@@ -62,12 +61,9 @@
                      <div class="form-group">
                         <label for="download"><strong>File Bukti</strong></label>
                         {{ Form::text('download', null, ['class' => 'form-control-plaintext', 'id' => 'download', 'readonly' => 'readonly']) }}
-                         <a href="{{url('../storage/app/public')}}/{{$organisasi->download}}" download="">Download</a>
+                         <a href="{{url('storage/file')}}/{{$organisasi->file_bukti}}">Download</a>
                     </div>
                      {{ Form::close() }}
-
-                     
-
                  
 
                  {{-- CARD FOOTER --}}
