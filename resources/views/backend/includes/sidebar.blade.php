@@ -28,6 +28,7 @@
                         </a>
                     </li>
 
+
                     {{-- Menu Mahasiswa--}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.mahasiswa.index') }}">
@@ -59,8 +60,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users.index') }}">
                             <i class="nav-icon fas fa-minus"></i> Users
+
+
                         </a>
                     </li>
+
                 </ul>
             </li>
                     {{-- Pengelolaan Nilai Tugas Akhir --}} 
@@ -69,8 +73,41 @@
                             <i class="nav-icon fas fa-book"></i> Kelola Nilai Tugas Akhir
                         </a>
                     </li>
+            
+                  {{-- Menu keluarga--}}
+             <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.keluarga.index') }}">
+                            <i class="nav-icon fas fa-female"></i> Keluarga
+                        </a>
+                    </li>
+
+
+
+
+        <!-- PENGELOLAAN PENGABDIAN -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.pengabdian.index') }}">
+                            <i class="nav-icon fas fa-book"></i> Kelola Pengabdian
+                        </a>
+                    </li>
+
+            {{--  PENGELOLAAN PENELITIAN--}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.penelitian.index') }}">
+                    <i class="nav-icon fas fa-book"></i> Kelola Penelitian
+                </a>
+            </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.organisasi-mhs.index') }}">
+                            <i class="nav-icon fas fa-users"></i> Organisasi Mahasiswa
+                        </a>
+                    </li>
+
         </ul>
     </nav>
+
+
 
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div><!--sidebar-->
