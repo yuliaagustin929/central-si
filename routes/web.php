@@ -55,6 +55,21 @@ Route::post('/admin/mahasiswa/cari', 'pengabdiancariController@show')->name('adm
 
     /** Routing untuk tugas mulai dari sini */
 
+
+    /** Daftar Keluarga   */
+    /**  */
+
+    Route::get('/admin/keluarga', 'keluargaController@index')->name('admin.keluarga.index');  //routing lihat daftar mahasiswa
+
+
+     Route::get('/admin/keluarga', 'keluargaController@index')->name('admin.keluarga.index');  //routing lihat daftar mahasiswa
+    Route::post('/admin/keluarga', 'kekuargaController@store')->name('admin.keluarga.store'); //routing simpan data mahasiswa baru
+    Route::get('/admin/keluarga/create', 'keluargaController@create')->name('admin.keluarga.create'); //routing tampilkan form data mahasiswa baru
+    Route::delete('/admin/keluarga/{mahasiswa}', 'keluargaController@destroy')->name('admin.keluarga.destroy'); //routing hapus data mahasiswa baru
+    Route::patch('/admin/keluarga/{mahasiswa}', 'keluargaController@update')->name('admin.keluarga.update'); //routing simpan perubahan data mahasiswa
+    Route::get('/admin/keluarga/{mahasiswa}', 'keluargaontroller@show')->name('admin.keluarga.show'); //routing tampilkan detail mahasiswa
+    Route::get('/admin/keluarga/{mahasiswa}/edit', 'keluargaController@edit')->name('admin.keluarga.edit');  //routing tampilkan form edit mahasiswa
+
     /** Pengelolaan Penelitian */
     Route::get('/admin/penelitian', 'PenelitianController@index')->name('admin.penelitian.index');  //routing lihat daftar mahasiswa
     Route::post('/admin/penelitian', 'PenelitianController@store')->name('admin.penelitian.store'); //routing simpan data mahasiswa baru
@@ -67,6 +82,8 @@ Route::post('/admin/mahasiswa/cari', 'pengabdiancariController@show')->name('adm
     Route::post('/admin/penelitian-user/create', 'PenelitianUserController@store')->name('admin.penelitian-user.store'); //form tambah anggota
     Route::get('/admin/penelitian-user/create/{penelitian}', 'PenelitianUserController@create')->name('admin.penelitian-user.create'); //form tambah anggota
     Route::delete('/admin/penelitian-user/{penelitian}/{user}', 'PenelitianUserController@destroy')->name('admin.penelitian-user.destroy'); //hapus anggota
+
+
 
     Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
     Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');
