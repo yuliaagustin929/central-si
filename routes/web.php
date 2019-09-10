@@ -55,6 +55,14 @@ Route::post('/admin/mahasiswa/cari', 'pengabdiancariController@show')->name('adm
 
     /** Routing untuk tugas mulai dari sini */
 
+    /** Routing Organisasi Mahasiswa*/
+    Route::get('/admin/organisasi-mhs', 'OrganisasiMhsController@index')->name('admin.organisasi-mhs.index');  //routing lihat daftar organisasimhs
+    Route::post('/admin/organisasi-mhs', 'OrganisasiMhsController@store')->name('admin.organisasi-mhs.store'); //routing simpan data organisasimhs baru
+    Route::get('/admin/organisasi-mhs/create', 'OrganisasiMhsController@create')->name('admin.organisasi-mhs.create'); //routing tampilkan form data organisasimhs baru
+    Route::delete('/admin/organisasi-mhs/{id}', 'OrganisasiMhsController@destroy')->name('admin.organisasi-mhs.destroy'); //routing hapus data organisasimhs baru
+    Route::patch('/admin/organisasi-mhs/{id}', 'OrganisasiMhsController@update')->name('admin.organisasi-mhs.update'); //routing simpan perubahan data organisasimhs
+    Route::get('/admin/organisasi-mhs/{id}', 'OrganisasiMhsController@show')->name('admin.organisasi-mhs.show'); //routing tampilkan detail organisasimhs
+    Route::get('/admin/organisasi-mhs/{id}/edit', 'OrganisasiMhsController@edit')->name('admin.organisasi-mhs.edit');  //routing tampilkan form edit organisasimhs
 
     /** Daftar Keluarga   */
     /**  */
