@@ -28,6 +28,7 @@
                         </a>
                     </li>
 
+
                     {{-- Menu Mahasiswa--}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.mahasiswa.index') }}">
@@ -59,11 +60,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users.index') }}">
                             <i class="nav-icon fas fa-minus"></i> Users
+
+
                         </a>
                     </li>
+
                 </ul>
             </li>
 
+
+        <!-- PENGELOLAAN PENGABDIAN -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.pengabdian.index') }}">
+                            <i class="nav-icon fas fa-book"></i> Kelola Pengabdian
+                        </a>
+                    </li>
             {{--  PENGELOLAAN PENELITIAN--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.penelitian.index') }}">
@@ -72,6 +83,8 @@
             </li>
         </ul>
     </nav>
+
+
 
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div><!--sidebar-->
